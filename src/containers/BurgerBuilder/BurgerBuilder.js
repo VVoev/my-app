@@ -20,7 +20,7 @@ class BurgerBuilder extends Component {
     render() {
         return (
             <Hoc>
-                <Burger />
+                <Burger ingredients={this.state.ingredients} />
                 <div>Build Controls</div>
             </Hoc>
         );
