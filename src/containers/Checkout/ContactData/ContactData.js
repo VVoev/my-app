@@ -4,14 +4,61 @@ import axios from '../../../axios-orders'
 
 import classes from './ContactData.css'
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import Input from '../../../components/UI/Input/Input'
 class ContactData extends Component {
 
     state = {
-        name: '',
-        email: '',
-        address: {
-            stret: '',
-            postalCode: ''
+        orderForm: {
+            name: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your name'
+                },
+                value: ''
+            },
+            street: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your street'
+                },
+                value: ''
+            },
+            zip: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your zipcode'
+                },
+                value: ''
+            },
+            country: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your country'
+                },
+                value: ''
+            },
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Your email'
+                },
+                value: ''
+            },
+            deliveryMethod: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        { valie: 'fastest', displayValie: 'Fastest' },
+                        { valie: 'cheapest', displayValie: 'Cheapest' }
+                    ]
+                },
+                value: ''
+            }
         },
         loading: false
     }
@@ -45,10 +92,7 @@ class ContactData extends Component {
 
         let form = this.state.loading ? <Spinner /> : (
             <form>
-                <input className={classes.Input} type="text" name="name" placeholder="Your name" />
-                <input className={classes.Input} type="email" name="email" placeholder="Your email" />
-                <input className={classes.Input} type="text" name="street" placeholder="Your street" />
-                <input className={classes.Input} type="text" name="postal" placeholder="Your street" />
+                <Input elementType="..." elementConfig="..." value="..." />
                 <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
             </form>
         )
