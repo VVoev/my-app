@@ -53,8 +53,8 @@ class ContactData extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        { valie: 'fastest', displayValie: 'Fastest' },
-                        { valie: 'cheapest', displayValie: 'Cheapest' }
+                        { value: 'fastest', displayValue: 'Fastest' },
+                        { value: 'cheapest', displayValue: 'Cheapest' }
                     ]
                 },
                 value: ''
@@ -89,10 +89,27 @@ class ContactData extends Component {
     }
     render() {
 
+        const formElementsArray = [];
+        for (let key in this.state.orderForm) {
+            formElementsArray.push({
+                id: key,
+                config: this.state.orderForm[key]
+            })
+        }
+
 
         let form = this.state.loading ? <Spinner /> : (
             <form>
-                <Input elementType="..." elementConfig="..." value="..." />
+                {formElementsArray.map((form, index) => {
+                    return (
+                        <Input
+                            key={index}
+                            elementType={form.config.elementType}
+                            elementConfig={form.config.elementConfig}
+                            value={form.config.value}
+                        />
+                    )
+                })}
                 <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
             </form>
         )
