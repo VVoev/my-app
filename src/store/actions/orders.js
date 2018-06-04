@@ -57,9 +57,22 @@ export const fetchOrderFailed = (error) => {
     }
 }
 
+export const orderDeleteUnsucesfully = (err) => {
+    return {
+        type: actionTypes.DELETE_ORDER_FAILED,
+        err: err
+    }
+}
+
 export const fetchOrderStart = () => {
     return {
         type: actionTypes.FETCH_ORDERS_START,
+    }
+}
+
+export const orderDeleteSuccesfully = () => {
+    return {
+        type: actionTypes.DELETE_ORDER
     }
 }
 
@@ -80,5 +93,17 @@ export const fetchOrders = () => {
             .catch(err => {
                 dispatch(fetchOrderFailed(err));
             });
+    }
+}
+
+export const deleteOrder = (id) => {
+    return dispatch => {
+        axios.delete(`/orders/${id}.json`)
+            .then((res) => {
+                dispatch(fetchOrders());
+            })
+            .catch(err => {
+                dispatch(orderDeleteUnsucesfully(err));
+            })
     }
 }

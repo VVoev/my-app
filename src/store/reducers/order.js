@@ -51,6 +51,18 @@ const reducer = (state = initialState, action) => {
                 loading: false
             }
         }
+        case actionTypes.DELETE_ORDER: {
+            return {
+                ...state,
+                orders: action.orders
+            }
+        }
+        case actionTypes.DELETE_ORDER_FAILED: {
+            return {
+                ...state,
+                error: action.err
+            }
+        }
         default:
             return state;
     }
