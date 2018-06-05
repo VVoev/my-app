@@ -15,3 +15,7 @@ export const FETCH_ORDERS_FAILED = 'FETCH_ORDERS_FAILED';
 export const DELETE_ORDER = 'DELETE_ORDER'
 export const DELETE_ORDER_FAILED = 'DELETE_ORDER_FAILED';
 
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILED = 'AUTH_FAILED';
+

@@ -13,3 +13,10 @@ export {
     deleteOrder,
     orderDeleteSuccesfully
 } from './orders';
+
+export {
+    authStart,
+    authSuccess,
+    authFail,
+    auth
+} from './auth';
