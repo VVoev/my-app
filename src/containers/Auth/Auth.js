@@ -6,7 +6,6 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import classes from './Auth.css'
-import { debug } from 'util';
 class Auth extends Component {
 
     state = {
