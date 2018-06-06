@@ -14,7 +14,6 @@ class Orders extends Component {
     }
 
     handleDeleteClick = (id) => {
-        console.log(id);
     }
 
     render() {
