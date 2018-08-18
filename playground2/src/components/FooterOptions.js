@@ -8,7 +8,7 @@ const FooterOptions = () => {
     return (
         <div>
             Show:
-            <button style={styles}> All</button>
+            <button style={styles}>All</button>
             <button style={styles}>Active</button>
             <button style={styles}>Completed</button>
         </div>
