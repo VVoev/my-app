@@ -13,3 +13,25 @@ export const decrementValue = number => {
     payload: number
   }
 }
+
+export const multiplyValue = number => {
+  return {
+    type: actions.MULTIPLY,
+    payload: number
+  }
+}
+
+export const deductValue = number => {
+  return {
+    type: actions.DEDUCT,
+    payload: number
+  }
+}
+
+export const squareValue = number => {
+  return {
+    type: actions.SQUARE,
+    payload: number
+  }
+}
+

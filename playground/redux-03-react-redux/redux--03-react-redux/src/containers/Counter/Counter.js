@@ -3,43 +3,39 @@ import { connect } from 'react-redux';
 
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
+import SaveNumber from '../../components/SaveNumber/SaveNumber'
+import Input from '../../components/Input/Input';
+import Results from '../../components/Results/Results'
 
-import { incrementValue, decrementValue } from '../../store/actions/calculate';
+import { incrementValue, decrementValue, multiplyValue, deductValue, squareValue } from '../../store/actions/calculate';
+import { saveNumber, deleteValue } from '../../store/actions/number'
 
 class Counter extends Component {
 
-    state = {
-        counter: 0
-    }
-
-    counterChangedHandler = (action, value) => {
-        switch (action) {
-            case 'inc':
-                this.setState((prevState) => { return { counter: prevState.counter + 1 } })
-                break;
-            case 'dec':
-                this.setState((prevState) => { return { counter: prevState.counter - 1 } })
-                break;
-            case 'add':
-                this.setState((prevState) => { return { counter: prevState.counter + value } })
-                break;
-            case 'sub':
-                this.setState((prevState) => { return { counter: prevState.counter - value } })
-                break;
-        }
-    }
-
-
     //TODO AFTER ALL IS IMPLEMENTED WITH REDUX SWITCH CASE SHOULD BE REMOVED
     //FLOW  this.props.{nameOfFunctions} => action{nameOfFunction} => reducer{listeningForActionType}
+
+    megaClick = () => {
+        this.props.saveResult(this.props.counter)
+    }
+
+    handleMe = (number) => {
+        this.props.deleteNumber(number);
+    }
+
+
     render() {
         return (
             <div>
                 <CounterOutput value={this.props.counter} />
-                <CounterControl label="Increment 1" clicked={() => this.props.incrementCounterWithOne(1)} />
-                <CounterControl label="Decrement 1" clicked={() => this.props.decrementCounterWithOne(1)} />
-                <CounterControl label="Add 5" clicked={() => this.counterChangedHandler('add', 5)} />
-                <CounterControl label="Subtract 5" clicked={() => this.counterChangedHandler('sub', 5)} />
+                <CounterControl label="Increment" clicked={() => this.props.incrementCounter(this.props.number)} />
+                <CounterControl label="Decrement" clicked={() => this.props.decrementCounter(this.props.number)} />
+                <CounterControl label="Multiply" clicked={() => this.props.multiply((this.props.number))} />
+                <CounterControl label="Deduct" clicked={() => this.props.deduct(this.props.number)} />
+                <CounterControl label="Square" clicked={() => this.props.square(this.props.counter)} />
+                <Input textToDisplay={this.props.number} />
+                <SaveNumber number={this.props.number} value="Save" handleThisClick={this.megaClick} />
+                <Results results={this.props.savedNumbers} cuknat={(x) => this.handleMe(x)} />
             </div>
         );
     }
@@ -48,14 +44,23 @@ class Counter extends Component {
 //Taking from the global state
 const mapStateToProps = state => {
     return {
-        counter: state.calculate.counter
+        counter: state.calculate.counter,
+        number: state.number.number,
+        savedNumbers: state.number.savedNumbers
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        incrementCounterWithOne: value => dispatch(incrementValue(value)),
-        decrementCounterWithOne: value => dispatch(decrementValue(value))
+        incrementCounter: value => dispatch(incrementValue(value)),
+        decrementCounter: value => dispatch(decrementValue(value)),
+        multiply: value => dispatch(multiplyValue(value)),
+        deduct: value => dispatch(deductValue(value)),
+
+        square: value => dispatch(squareValue(value)),
+
+        saveResult: value => dispatch(saveNumber(value)),
+        deleteNumber: (value) => dispatch(deleteValue(value))
 
     };
 };

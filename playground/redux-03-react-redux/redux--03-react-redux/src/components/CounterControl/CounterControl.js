@@ -3,7 +3,6 @@ import React from 'react';
 import './CounterControl.css';
 
 const counterControl = (props) => {
-    console.log(props);
     return (
         <div className="CounterControl" onClick={props.clicked}>
             {props.label}
