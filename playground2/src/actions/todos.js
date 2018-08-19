@@ -7,3 +7,10 @@ export const addTodoValue = todo => {
         payload: todo
     }
 }
+
+export const markTodoAsDone = todo => {
+    return {
+        type: actions.MARK_TODO,
+        payload: todo
+    }
+}
