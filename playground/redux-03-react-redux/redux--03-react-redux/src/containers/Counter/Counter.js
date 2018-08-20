@@ -7,7 +7,7 @@ import SaveNumber from '../../components/SaveNumber/SaveNumber'
 import Input from '../../components/Input/Input';
 import Results from '../../components/Results/Results'
 
-import { incrementValue, decrementValue, multiplyValue, deductValue, squareValue } from '../../store/actions/calculate';
+import { incrementValue, decrementValue, multiplyValue, deductValue, squareValue, squareRoot } from '../../store/actions/calculate';
 import { saveNumber, deleteValue } from '../../store/actions/number'
 
 class Counter extends Component {
@@ -20,6 +20,7 @@ class Counter extends Component {
     }
 
     handleMe = (number) => {
+        debugger;
         this.props.deleteNumber(number);
     }
 
@@ -33,6 +34,7 @@ class Counter extends Component {
                 <CounterControl label="Multiply" clicked={() => this.props.multiply((this.props.number))} />
                 <CounterControl label="Deduct" clicked={() => this.props.deduct(this.props.number)} />
                 <CounterControl label="Square" clicked={() => this.props.square(this.props.counter)} />
+                <CounterControl label="Square root" clicked={() => this.props.squareRoot(this.props.number)} />
                 <Input textToDisplay={this.props.number} />
                 <SaveNumber number={this.props.number} value="Save" handleThisClick={this.megaClick} />
                 <Results results={this.props.savedNumbers} cuknat={(x) => this.handleMe(x)} />
@@ -58,6 +60,8 @@ const mapDispatchToProps = (dispatch) => {
         deduct: value => dispatch(deductValue(value)),
 
         square: value => dispatch(squareValue(value)),
+
+        squareRoot: number => dispatch(squareRoot(number)),
 
         saveResult: value => dispatch(saveNumber(value)),
         deleteNumber: (value) => dispatch(deleteValue(value))

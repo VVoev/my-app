@@ -7,6 +7,7 @@ const initialState = {
 
 
 const numberReducer = (state = initialState, action) => {
+    debugger;
     switch (action.type) {
         case actionTypes.SET_NUMBER_GLOBALLY:
             return {

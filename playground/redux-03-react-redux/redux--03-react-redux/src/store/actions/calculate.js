@@ -35,3 +35,13 @@ export const squareValue = number => {
   }
 }
 
+export const squareRoot = number => {
+  return {
+    type: actions.SQUAREROOT,
+    payload: {
+      number,
+      operation: 'squareRoot'
+    }
+  }
+}
+

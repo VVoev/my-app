@@ -6,6 +6,7 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
+    debugger;
     switch (action.type) {
         case actionTypes.INCREMENT:
             return {
@@ -30,6 +31,12 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SQUARE: {
             return {
                 counter: state.counter * action.payload
+            }
+        }
+
+        case actionTypes.SQUAREROOT: {
+            return {
+                counter: Math.sqrt(state.counter)
             }
         }
 
